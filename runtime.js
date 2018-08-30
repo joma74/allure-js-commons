@@ -1,4 +1,8 @@
 'use strict';
+
+/**
+ * @param {import("index").Allure} allure 
+ */
 var Allure = function(allure) {
     this._allure = allure;
 };
