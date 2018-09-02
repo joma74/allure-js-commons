@@ -11,14 +11,14 @@ var assign = require('object-assign'),
     Step = require('./beans/step'),
     Attachment = require('./beans/attachment'),
     util = require('./util'),
-	writer = require('./writer');
+    writer = require('./writer');
 
 /**
  * @constructor
  */
 function Allure() {
-	/** @type {Suite[]} */
-	this.suites = [];
+    /** @type {Suite[]} */
+    this.suites = [];
 	
     this.options = {
         targetDir: 'allure-results'
@@ -108,9 +108,9 @@ Allure.prototype.endStep = function(status, timestamp) {
     if (!suite || !(suite.currentStep instanceof Step)) {
         console.warn('allure-js-commons: Unexpected endStep(). There are no any steps running');
         return;
-	}
+    }
 	
-	var currentStep  = /** @type {Step} */ (suite.currentStep);
+    var currentStep  = /** @type {Step} */ (suite.currentStep);
 
     currentStep.end(status, timestamp);
     suite.currentStep = currentStep.parent;

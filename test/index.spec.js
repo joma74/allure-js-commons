@@ -8,7 +8,7 @@ var writer = require('../writer');
 
 
 describe('allure-reporter', function () {
-	/**
+    /**
 	 * @type {import ("../index")}
 	 */
     var allure;

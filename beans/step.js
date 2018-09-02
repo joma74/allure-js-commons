@@ -12,12 +12,12 @@
  */
 function Step(name, timestamp) {
     this.name = name;
-	this.start = timestamp || Date.now();
-	/** @type {Step[]} */
+    this.start = timestamp || Date.now();
+    /** @type {Step[]} */
     this.steps = [];
-	this.attachments = [];
-	/** @type {Step} */
-	this.parent;
+    this.attachments = [];
+    /** @type {Step} */
+    this.parent;
 }
 
 /**

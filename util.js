@@ -6,7 +6,7 @@ var fileType = require('file-type'),
     mime = require('mime');
 
 module.exports = {
-	/**
+    /**
 	 * 
 	 * @param {BUFFERTYPE} [buffer]
 	 * @param {string} [type] fileMime string e.g. text/plain

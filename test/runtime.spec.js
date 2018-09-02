@@ -10,14 +10,14 @@ var Runtime = require('../runtime');
 var joc = jasmine.objectContaining.bind(jasmine);
 
 describe('allure-runtime', function() {
-	/**
+    /**
 	 * @type {import ("../runtime")}
 	 */
-	var runtime;
-	/**
+    var runtime;
+    /**
 	 * @type {import ("../index")}
 	 */
-	var allure;
+    var allure;
     beforeEach(function() {
         allure = new Allure();
         runtime = new Runtime(allure);

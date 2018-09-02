@@ -19,14 +19,14 @@ var STATUSES = ['passed', 'pending', 'skipped', 'failed', 'broken'];
  */
 function Test(name, timestamp) {
     this.name = name;
-	this.start = timestamp || Date.now();
-	/** @type {Step[]} */
-	this.steps = [];
-	/** @type {Attachement[]} */
-	this.attachments = [];
-	/** @type {Label[]} */
-	this.labels = [];
-	/** @type {Parameter[]} */
+    this.start = timestamp || Date.now();
+    /** @type {Step[]} */
+    this.steps = [];
+    /** @type {Attachement[]} */
+    this.attachments = [];
+    /** @type {Label[]} */
+    this.labels = [];
+    /** @type {Parameter[]} */
     this.parameters = [];
 }
 

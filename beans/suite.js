@@ -11,13 +11,13 @@
  */
 function Suite(name, timestamp) {
     this.name = name;
-	this.start = timestamp || Date.now();
-	/** @type {Test[]}} */
-	this.testcases = [];
-	/** @type {Test} */
-	this.currentTest;
-	/** @type {Test | Step} */
-	this.currentStep;
+    this.start = timestamp || Date.now();
+    /** @type {Test[]}} */
+    this.testcases = [];
+    /** @type {Test} */
+    this.currentTest;
+    /** @type {Test | Step} */
+    this.currentStep;
 }
 
 /**

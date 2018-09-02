@@ -11,15 +11,15 @@ var fs = require('fs-extra'),
     xml = require('js2xmlparser');
 
 module.exports = {
-	/**
+    /**
 	 * 
 	 * @param {string} targetDir 
 	 * @param {Suite} suites 
 	 */
     writeSuite: function(targetDir, suites) {
         fs.outputFileSync(path.join(targetDir, uuid.v4() + '-testsuite.xml'), xml.parse('ns2:test-suite', suites.toXML()));
-	},
-	/**
+    },
+    /**
 	 * 
 	 * @param {string} targetDir 
 	 * @param {BUFFERTYPE} buffer 
