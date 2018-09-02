@@ -102,9 +102,9 @@ describe('allure-runtime', function() {
     });
 
     it('should create attachements as function', function() {
-        var attachmentFunction = runtime.createAttachment('file [{0}]', function() {
+        var attachmentFunction = /** @type {Function} */ (runtime.createAttachment('file [{0}]', function() {
             return new Buffer('content', 'utf-8');
-        });
+        }));
         attachmentFunction('test');
         expect(allure.getCurrentSuite().currentTest.attachments).toEqual([
             joc({
