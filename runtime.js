@@ -65,6 +65,8 @@ Runtime.prototype.createStep = function(name, stepFunc) {
 };
 
 /**
+ * @todo See https://github.com/Microsoft/TypeScript/issues/407
+ * 
  * @param {string} name 
  * @param {Function | BUFFERTYPE | any} [content]
  * @param {string} [type]
