@@ -2,7 +2,7 @@
 
 /**
  * @typedef { import("./beans/suite")} Suite
- * @typedef {import("types").BUFFERTYPE} BUFFERTYPE
+ * @typedef {import("./types").BUFFERTYPE} BUFFERTYPE
  */
 
 var fs = require('fs-extra'),

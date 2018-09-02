@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @typedef {import("types").TESTSTATUS} TESTSTATUS
+ * @typedef {import("../types").TESTSTATUS} TESTSTATUS
  */
 
 /**
@@ -38,7 +38,7 @@ Step.prototype.addAttachment = function (attachment) {
 
 /**
  * 
- * @param {import("types").TESTSTATUS} status
+ * @param {import("../types").TESTSTATUS} status
  * @param {number} [timestamp]
  */
 Step.prototype.end = function (status, timestamp) {

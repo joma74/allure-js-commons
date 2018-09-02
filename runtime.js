@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * @typedef {import("types").BUFFERTYPE} BUFFERTYPE
- * @typedef {import("types").IRuntime} IRuntime
- * @typedef {import("types").SEVERITYTYPE_V} SEVERITYTYPE_V
- * @typedef {import("types").SEVERITIES} SEVERITIES
+ * @typedef {import("./types").BUFFERTYPE} BUFFERTYPE
+ * @typedef {import("./types").IRuntime} IRuntime
+ * @typedef {import("./types").SEVERITYTYPE_V} SEVERITYTYPE_V
+ * @typedef {import("./types").SEVERITIES} SEVERITIES
  */
 
 /**
@@ -44,14 +44,14 @@ Runtime.prototype.createStep = function(name, stepFunc) {
     var that = this;
     return function() {
         var stepName = that._format(name, Array.prototype.slice.call(arguments, 0)),
-            status = /** @type {import("types").TESTSTATUS} */('passed'),
+            status = /** @type {import("./types").TESTSTATUS} */('passed'),
             result;
         that._allure.startStep(stepName);
         try {
             result = stepFunc.apply(this, arguments);
         }
         catch(error) {
-            status = /** @type {import("types").TESTSTATUS} */('broken');
+            status = /** @type {import("./types").TESTSTATUS} */('broken');
             throw error;
         }
         finally {

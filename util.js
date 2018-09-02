@@ -1,5 +1,5 @@
 /**
- * @typedef {import("types").BUFFERTYPE} BUFFERTYPE
+ * @typedef {import("./types").BUFFERTYPE} BUFFERTYPE
  */
 
 var fileType = require('file-type'),

@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * @typedef {import("types").BUFFERTYPE} BUFFERTYPE
- * @typedef {import("types").TESTSTATUS} TESTSTATUS
+ * @typedef {import("./types").BUFFERTYPE} BUFFERTYPE
+ * @typedef {import("./types").TESTSTATUS} TESTSTATUS
  */
 
 var assign = require('object-assign'),

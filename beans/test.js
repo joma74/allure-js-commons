@@ -70,12 +70,13 @@ Test.prototype.addAttachment = function (attachment) {
 
 /**
  * 
- * @param {import("types").TESTSTATUS} status
+ * @param {import("../types").TESTSTATUS} status
  * @param {Error} [error]
  * @param {number} [timestamp]
  */
 Test.prototype.end = function (status, error, timestamp) {
     this.stop = timestamp || Date.now();
+    // @ts-ignore this.status may be undefined which results in a TypeError
     if(status && (STATUSES.indexOf(status) > STATUSES.indexOf(this.status))) {
         this.status = status;
     }
