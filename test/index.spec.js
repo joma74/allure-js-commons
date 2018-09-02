@@ -77,13 +77,16 @@ describe('allure-reporter', function () {
             spyOn(console, 'warn');
 
             allure.startStep('test step');
+            // @ts-ignore
             expect(suite.currentTest).not.toBe(suite.currentStep);
 
             allure.endStep('passed');
+            // @ts-ignore
             expect(suite.currentTest).toBe(suite.currentStep);
 
             allure.endStep('passed');
             expect(console.warn).toHaveBeenCalledTimes(1);
+            // @ts-ignore
             expect(suite.currentTest).toBe(suite.currentStep);
         });
 
@@ -93,7 +96,9 @@ describe('allure-reporter', function () {
 
             allure.setDescription(description);
 
+            // @ts-ignore
             expect(testCase.description.value).toBe(description);
+            // @ts-ignore
             expect(testCase.description.type).toBe('text');
         });
 
@@ -104,7 +109,9 @@ describe('allure-reporter', function () {
 
             allure.setDescription(description, type);
 
+            // @ts-ignore
             expect(testCase.description.value).toBe(description);
+            // @ts-ignore
             expect(testCase.description.type).toBe(type);
         });
     });
