@@ -3,23 +3,28 @@
 /**
  * @typedef {import("types").BUFFERTYPE} BUFFERTYPE
  * @typedef {import("types").IRuntime} IRuntime
+ * @typedef {import("types").SEVERITYTYPE_V} SEVERITYTYPE_V
+ * @typedef {import("types").SEVERITIES} SEVERITIES
  */
 
-var SEVERITY = {
+/**
+ * @type {SEVERITIES}
+ */
+var SEVERITY = Object.freeze({
     BLOCKER: 'blocker',
     CRITICAL: 'critical',
     NORMAL: 'normal',
     MINOR: 'minor',
     TRIVIAL: 'trivial'
-};
+});
 
 /**
  * @constructor
  * @param {import("index")} allure
  */
 function Runtime(allure) {
-	this._allure = allure;
-};
+    this._allure = allure;
+}
 
 /**
  * 
@@ -38,7 +43,7 @@ Runtime.prototype.isPromise = function(obj) {
 Runtime.prototype.createStep = function(name, stepFunc) {
     var that = this;
     return function() {
-		var stepName = that._format(name, Array.prototype.slice.call(arguments, 0)),
+        var stepName = that._format(name, Array.prototype.slice.call(arguments, 0)),
             status = /** @type {import("types").TESTSTATUS} */('passed'),
             result;
         that._allure.startStep(stepName);
@@ -120,7 +125,7 @@ Runtime.SEVERITY = SEVERITY;
 
 /**
  * 
- * @param {keyof typeof Runtime.SEVERITY} severity 
+ * @param {SEVERITYTYPE_V} severity 
  */
 Runtime.prototype.severity = function(severity) {
     this.addLabel('severity', severity);
