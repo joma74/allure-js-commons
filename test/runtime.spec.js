@@ -1,15 +1,26 @@
 'use strict';
 var proxyquire = require('proxyquire');
+
+/**
+ * @type {typeof import ("../index")}
+ */
 var Allure = proxyquire('../index', {'fs-extra': require('./helpers/mock-fs')});
-var AllureRuntime = require('../runtime');
+var Runtime = require('../runtime');
 
 var joc = jasmine.objectContaining.bind(jasmine);
 
 describe('allure-runtime', function() {
-    var runtime, allure;
+	/**
+	 * @type {import ("../runtime")}
+	 */
+	var runtime;
+	/**
+	 * @type {import ("../index")}
+	 */
+	var allure;
     beforeEach(function() {
         allure = new Allure();
-        runtime = new AllureRuntime(allure);
+        runtime = new Runtime(allure);
         allure.startSuite('dummy suite');
         allure.startCase('dummy case');
     });

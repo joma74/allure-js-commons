@@ -1,7 +1,16 @@
+/**
+ * @typedef {import("types").BUFFERTYPE} BUFFERTYPE
+ */
+
 var fileType = require('file-type'),
     mime = require('mime');
 
 module.exports = {
+	/**
+	 * 
+	 * @param {BUFFERTYPE} [buffer]
+	 * @param {string} [type] fileMime string e.g. text/plain
+	 */
     getBufferInfo: function(buffer, type) {
         var fileInfo = fileType(buffer),
             fileExtension = 'txt',

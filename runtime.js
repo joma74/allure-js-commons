@@ -1,28 +1,52 @@
 'use strict';
 
 /**
- * @param {import("index").Allure} allure 
+ * @typedef {import("types").BUFFERTYPE} BUFFERTYPE
+ * @typedef {import("types").IRuntime} IRuntime
  */
-var Allure = function(allure) {
-    this._allure = allure;
+
+var SEVERITY = {
+    BLOCKER: 'blocker',
+    CRITICAL: 'critical',
+    NORMAL: 'normal',
+    MINOR: 'minor',
+    TRIVIAL: 'trivial'
 };
 
-Allure.prototype.isPromise = function(obj) {
+/**
+ * @constructor
+ * @param {import("index")} allure
+ */
+function Runtime(allure) {
+	this._allure = allure;
+};
+
+/**
+ * 
+ * @param {any} obj
+ * @returns {boolean}
+ */
+Runtime.prototype.isPromise = function(obj) {
     return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 };
 
-Allure.prototype.createStep = function(name, stepFunc) {
+/**
+ * @param {string} name 
+ * @param {Function} stepFunc
+ * @returns {Function}
+ */
+Runtime.prototype.createStep = function(name, stepFunc) {
     var that = this;
     return function() {
-        var stepName = that._format(name, Array.prototype.slice.call(arguments, 0)),
-            status = 'passed',
+		var stepName = that._format(name, Array.prototype.slice.call(arguments, 0)),
+            status = /** @type {import("types").TESTSTATUS} */('passed'),
             result;
         that._allure.startStep(stepName);
         try {
             result = stepFunc.apply(this, arguments);
         }
         catch(error) {
-            status = 'broken';
+            status = /** @type {import("types").TESTSTATUS} */('broken');
             throw error;
         }
         finally {
@@ -40,7 +64,13 @@ Allure.prototype.createStep = function(name, stepFunc) {
     };
 };
 
-Allure.prototype.createAttachment = function(name, content, type) {
+/**
+ * @param {string} name 
+ * @param {Function | BUFFERTYPE | any} [content]
+ * @param {string} [type]
+ * @return {Function | void}
+ */
+Runtime.prototype.createAttachment = function(name, content, type) {
     var that = this;
     if(typeof content === 'function') {
         return function() {
@@ -53,50 +83,81 @@ Allure.prototype.createAttachment = function(name, content, type) {
     }
 };
 
-Allure.prototype.addLabel = function(name, value) {
+/**
+ * 
+ * @param {string} name 
+ * @param {any} value 
+ */
+Runtime.prototype.addLabel = function(name, value) {
     this._allure.getCurrentTest().addLabel(name, value);
 };
 
-Allure.prototype.addArgument = function(name, value) {
+/**
+ * 
+ * @param {string} name 
+ * @param {string} value 
+ */
+Runtime.prototype.addArgument = function(name, value) {
     this._allure.getCurrentTest().addParameter('argument', name, value);
 };
 
-Allure.prototype.addEnvironment = function(name, value) {
+/**
+ * 
+ * @param {string} name 
+ * @param {string} value 
+ */
+Runtime.prototype.addEnvironment = function(name, value) {
     this._allure.getCurrentTest().addParameter('environment-variable', name, value);
 };
 
-Allure.prototype.description = function(description, type) {
+Runtime.prototype.description = function(description, type) {
     this._allure.setDescription(description, type);
 };
 
-Allure.prototype.SEVERITY = {
-    BLOCKER: 'blocker',
-    CRITICAL: 'critical',
-    NORMAL: 'normal',
-    MINOR: 'minor',
-    TRIVIAL: 'trivial'
-};
+Runtime.SEVERITY = SEVERITY;
 
-Allure.prototype.severity = function(severity) {
+/**
+ * 
+ * @param {keyof typeof Runtime.SEVERITY} severity 
+ */
+Runtime.prototype.severity = function(severity) {
     this.addLabel('severity', severity);
 };
 
-Allure.prototype.epic = function(epic) {
+/**
+ * 
+ * @param {string} epic 
+ */
+Runtime.prototype.epic = function(epic) {
     this.addLabel('epic', epic);
 };
 
-Allure.prototype.feature = function(feature) {
+/**
+ * 
+ * @param {string} feature 
+ */
+Runtime.prototype.feature = function(feature) {
     this.addLabel('feature', feature);
 };
 
-Allure.prototype.story = function(story) {
+/**
+ * 
+ * @param {string} story 
+ */
+Runtime.prototype.story = function(story) {
     this.addLabel('story', story);
 };
 
-Allure.prototype._format = function(name, arr) {
+/**
+ * 
+ * @param {string} name 
+ * @param {any[]} arr 
+ */
+Runtime.prototype._format = function(name, arr) {
     return name.replace(/(\{(\d+)\})/gi, function(match, submatch, index) {
         return arr[index];
     });
 };
 
-module.exports = Allure;
+
+module.exports = Runtime;

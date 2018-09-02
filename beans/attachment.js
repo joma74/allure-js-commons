@@ -1,6 +1,14 @@
 /**
  * Created by dolf on 12.05.15.
  */
+/**
+ * @constructor
+ * @this {Attachment}
+ * @param {string} title 
+ * @param {string} source 
+ * @param {number} size 
+ * @param {string} mime 
+ */
 function Attachment(title, source, size, mime) {
     this.title = title;
     this.type = mime;

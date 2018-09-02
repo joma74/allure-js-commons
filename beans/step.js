@@ -1,19 +1,46 @@
 'use strict';
+
+/**
+ * @typedef {import("types").TESTSTATUS} TESTSTATUS
+ */
+
+/**
+ * @constructor
+ * @this {Step}
+ * @param {string} name 
+ * @param {number} [timestamp]
+ */
 function Step(name, timestamp) {
     this.name = name;
-    this.start = timestamp || Date.now();
+	this.start = timestamp || Date.now();
+	/** @type {Step[]} */
     this.steps = [];
-    this.attachments = [];
+	this.attachments = [];
+	/** @type {Step} */
+	this.parent;
 }
 
+/**
+ * 
+ * @param {Step} step 
+ */
 Step.prototype.addStep = function (step) {
     this.steps.push(step);
 };
 
+/**
+ * 
+ * @param {import("./attachment")} attachment 
+ */
 Step.prototype.addAttachment = function (attachment) {
     this.attachments.push(attachment);
 };
 
+/**
+ * 
+ * @param {import("types").TESTSTATUS} status
+ * @param {number} [timestamp]
+ */
 Step.prototype.end = function (status, timestamp) {
     this.status = status;
     this.stop = timestamp || Date.now();

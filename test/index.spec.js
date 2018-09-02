@@ -1,9 +1,16 @@
 var proxyquire = require('proxyquire');
+/**
+ * @type {typeof import ("../index")}
+ */
 var Allure = proxyquire('../index', {'fs-extra': require('./helpers/mock-fs')});
 var joc = jasmine.objectContaining.bind(jasmine);
 var writer = require('../writer');
 
+
 describe('allure-reporter', function () {
+	/**
+	 * @type {import ("../index")}
+	 */
     var allure;
 
     beforeEach(function () {

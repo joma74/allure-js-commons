@@ -6,15 +6,28 @@ var TYPES = {
     MARKDOWN: 'markdown'
 };
 
+/**
+ * @todo keyof typeof Description.TYPES is not equal to their values
+ * 
+ * @constructor
+ * @this {Description}
+ * @param {string} value 
+ * @param {keyof typeof Description.TYPES} type 
+ */
+function Description(value, type) {
+    this.value = value;
+    this.type = isAvailableType(type) ? type : Description.TYPES.TEXT;
+}
+
+/**
+ * @todo keyof typeof Description.TYPES is not equal to their values
+ * 
+ * @param {keyof typeof Description.TYPES} type one of Description.TYPES
+ */
 function isAvailableType(type) {
     return Object.keys(TYPES).some(function(key) {
         return TYPES[key] === type;
     });
-}
-
-function Description(value, type) {
-    this.value = value;
-    this.type = isAvailableType(type) ? type : Description.TYPES.TEXT;
 }
 
 Description.prototype.toXML = function() {

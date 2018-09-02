@@ -3,27 +3,63 @@
 var Description = require('./description');
 
 var STATUSES = ['passed', 'pending', 'skipped', 'failed', 'broken'];
+
+/**
+ * @typedef {import ("./step")} Step
+ * @typedef {import ("./attachment")} Attachement
+ * @typedef {import ("../types").Label} Label
+ * @typedef {import ("../types").Parameter} Parameter
+ * @typedef {import ("../types").PARAMETERTYPE} PARAMETERTYPE
+ */
+
+/**
+ * @constructor
+ * @param {string} name 
+ * @param {number} [timestamp]
+ */
 function Test(name, timestamp) {
     this.name = name;
-    this.start = timestamp || Date.now();
-    this.steps = [];
-    this.attachments = [];
-    this.labels = [];
+	this.start = timestamp || Date.now();
+	/** @type {Step[]} */
+	this.steps = [];
+	/** @type {Attachement[]} */
+	this.attachments = [];
+	/** @type {Label[]} */
+	this.labels = [];
+	/** @type {Parameter[]} */
     this.parameters = [];
 }
 
+/**
+ * 
+ * @param {string} description 
+ * @param {keyof typeof Description.TYPES} type 
+ */
 Test.prototype.setDescription = function (description, type) {
     this.description = new Description(description, type);
 };
 
+/**
+ * @param {string} name 
+ * @param {string} value 
+ */
 Test.prototype.addLabel = function (name, value) {
     this.labels.push({name: name, value: value});
 };
 
+/**
+ * 
+ * @param {PARAMETERTYPE} kind 
+ * @param {string} name 
+ * @param {any} value 
+ */
 Test.prototype.addParameter = function (kind, name, value) {
     this.parameters.push({kind: kind, name: name, value: value});
 };
 
+/**
+ * @param {Step} step
+ */
 Test.prototype.addStep = function (step) {
     this.steps.push(step);
 };
@@ -32,9 +68,15 @@ Test.prototype.addAttachment = function (attachment) {
     this.attachments.push(attachment);
 };
 
+/**
+ * 
+ * @param {import("types").TESTSTATUS} status
+ * @param {Error} [error]
+ * @param {number} [timestamp]
+ */
 Test.prototype.end = function (status, error, timestamp) {
     this.stop = timestamp || Date.now();
-    if(STATUSES.indexOf(status) > STATUSES.indexOf(this.status)) {
+    if(status && (STATUSES.indexOf(status) > STATUSES.indexOf(this.status))) {
         this.status = status;
     }
     if (error) {
