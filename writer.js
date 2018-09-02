@@ -22,7 +22,7 @@ module.exports = {
     /**
 	 * 
 	 * @param {string} targetDir 
-	 * @param {BUFFERTYPE} buffer 
+	 * @param {BUFFERTYPE | string} buffer 
 	 * @param {string} ext 
 	 */
     writeBuffer: function(targetDir, buffer, ext) {

@@ -8,7 +8,7 @@ var fileType = require('file-type'),
 module.exports = {
     /**
 	 * 
-	 * @param {BUFFERTYPE} [buffer]
+	 * @param {BUFFERTYPE | string} [buffer]
 	 * @param {string} [type] fileMime string e.g. text/plain
 	 */
     getBufferInfo: function(buffer, type) {

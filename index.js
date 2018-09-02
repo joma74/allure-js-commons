@@ -123,12 +123,13 @@ Allure.prototype.setDescription = function(description, type) {
 /**
  * 
  * @param {string} attachmentName 
- * @param {Function | BUFFERTYPE | any} buffer
+ * @param {BUFFERTYPE | string} buffer
  * @param {string} [type] 
  */
 Allure.prototype.addAttachment = function(attachmentName, buffer, type) {
     var info = util.getBufferInfo(buffer, type),
         name = writer.writeBuffer(this.options.targetDir, buffer, info.ext),
+        // @ts-ignore buffer may be undefined so buffer.length may throw TypeError
         attachment = new Attachment(attachmentName, name, buffer.length, info.mime),
         currentStep = /** @type {Step} */ (this.getCurrentSuite().currentStep);
 
