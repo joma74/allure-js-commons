@@ -20,7 +20,7 @@ var SEVERITY = Object.freeze({
 
 /**
  * @constructor
- * @param {import("index")} allure
+ * @param {import("./index")} allure
  */
 function Runtime(allure) {
     this._allure = allure;
