@@ -7,7 +7,7 @@
  * @constructor
  * @this {Suite}
  * @param {string} name 
- * @param {number} [timestamp] 
+ * @param {number=} timestamp
  */
 function Suite(name, timestamp) {
     this.name = name;

@@ -8,7 +8,7 @@
  * @constructor
  * @this {Step}
  * @param {string} name 
- * @param {number} [timestamp]
+ * @param {number=} timestamp
  */
 function Step(name, timestamp) {
     this.name = name;
@@ -39,7 +39,7 @@ Step.prototype.addAttachment = function (attachment) {
 /**
  * 
  * @param {import("../types").TESTSTATUS} status
- * @param {number} [timestamp]
+ * @param {number=} timestamp
  */
 Step.prototype.end = function (status, timestamp) {
     this.status = status;

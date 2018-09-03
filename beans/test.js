@@ -15,7 +15,7 @@ var STATUSES = ['passed', 'pending', 'skipped', 'failed', 'broken'];
 /**
  * @constructor
  * @param {string} name 
- * @param {number} [timestamp]
+ * @param {number=} timestamp
  */
 function Test(name, timestamp) {
     this.name = name;
@@ -71,8 +71,8 @@ Test.prototype.addAttachment = function (attachment) {
 /**
  * 
  * @param {import("../types").TESTSTATUS} status
- * @param {Error} [error]
- * @param {number} [timestamp]
+ * @param {Error=} error]
+ * @param {number=} timestamp]
  */
 Test.prototype.end = function (status, error, timestamp) {
     this.stop = timestamp || Date.now();

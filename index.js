@@ -43,7 +43,7 @@ Allure.prototype.getCurrentTest = function() {
 /**
  * 
  * @param {string} suiteName 
- * @param {number} [timestamp] 
+ * @param {number=} timestamp
  */
 Allure.prototype.startSuite = function(suiteName, timestamp) {
     this.suites.unshift(new Suite(suiteName, timestamp));
@@ -60,7 +60,7 @@ Allure.prototype.endSuite = function(timestamp) {
 
 /**
  * @param {string} testName
- * @param {number} [timestamp]
+ * @param {number=} timestamp
  */
 Allure.prototype.startCase = function(testName, timestamp) {
     var test = new Test(testName, timestamp),
@@ -73,8 +73,8 @@ Allure.prototype.startCase = function(testName, timestamp) {
 /**
  * 
  * @param {TESTSTATUS} status 
- * @param {Error} [err] 
- * @param {number} [timestamp]
+ * @param {Error=} err 
+ * @param {number=} timestamp
  */
 Allure.prototype.endCase = function(status, err, timestamp) {
     this.getCurrentTest().end(status, err, timestamp);
@@ -83,7 +83,7 @@ Allure.prototype.endCase = function(status, err, timestamp) {
 /**
  * 
  * @param {string} stepName 
- * @param {number} [timestamp]
+ * @param {number=} timestamp
  */
 Allure.prototype.startStep = function(stepName, timestamp) {
     var step = new Step(stepName, timestamp),
@@ -101,7 +101,7 @@ Allure.prototype.startStep = function(stepName, timestamp) {
 
 /**
  * @param {TESTSTATUS} status
- * @param {number} [timestamp]
+ * @param {number=} timestamp
  */
 Allure.prototype.endStep = function(status, timestamp) {
     var suite = this.getCurrentSuite();
@@ -124,7 +124,7 @@ Allure.prototype.setDescription = function(description, type) {
  * 
  * @param {string} attachmentName 
  * @param {BUFFERTYPE | string} buffer
- * @param {string} [type] 
+ * @param {string=} type
  */
 Allure.prototype.addAttachment = function(attachmentName, buffer, type) {
     var info = util.getBufferInfo(buffer, type),
@@ -142,7 +142,7 @@ Allure.prototype.addAttachment = function(attachmentName, buffer, type) {
 
 /**
  * @param {string} testName
- * @param {number} timestamp
+ * @param {number=} timestamp
  */
 Allure.prototype.pendingCase = function(testName, timestamp) {
     this.startCase(testName, timestamp);
