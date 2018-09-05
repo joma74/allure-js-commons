@@ -5,11 +5,11 @@
  */
 
 module.exports = {
-	/**
+    /**
 	 * @type {KeysAndAnyValues}
 	 */
-	files: {},
-	/**
+    files: {},
+    /**
 	 * @todo Write TS issue for typeof Object.prototype
 	 * @see [T.constructor should be of type T|https://github.com/Microsoft/TypeScript/issues/3841]
 	 * 
