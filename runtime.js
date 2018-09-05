@@ -2,7 +2,6 @@
 
 /**
  * @typedef {import("./types").BUFFERTYPE} BUFFERTYPE
- * @typedef {import("./types").IRuntime} IRuntime
  * @typedef {import("./types").SEVERITYTYPE_V} SEVERITYTYPE_V
  * @typedef {import("./types").SEVERITIES} SEVERITIES
  * @typedef {import("./types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
@@ -76,7 +75,7 @@ Runtime.prototype.createStep = function(name, stepFunc) {
  * @todo See https://github.com/Microsoft/TypeScript/issues/407
  * 
  * @param {string} name 
- * @param {Function | BUFFERTYPE | any} content
+ * @param {Function | BUFFERTYPE} content
  * @param {string=} type
  * @return {Function | void}
  */

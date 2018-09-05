@@ -32,7 +32,7 @@ Step.prototype.addStep = function (step) {
 
 /**
  * 
- * @param {import("./attachment")} attachment 
+ * @param {Attachement} attachment 
  */
 Step.prototype.addAttachment = function (attachment) {
     this.attachments.push(attachment);
@@ -40,7 +40,7 @@ Step.prototype.addAttachment = function (attachment) {
 
 /**
  * 
- * @param {import("../types").TESTSTATUS} status
+ * @param {TESTSTATUS} status
  * @param {number=} timestamp
  */
 Step.prototype.end = function (status, timestamp) {
