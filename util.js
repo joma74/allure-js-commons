@@ -10,22 +10,20 @@ module.exports = {
 	 * 
 	 * @param {BUFFERTYPE} buffer
 	 * @param {string} [type] fileMime string e.g. text/plain
-	 * @return {Object.<string, string | null>}
+	 * @return {Object.<string, string>}
 	 */
     getBufferInfo: function(buffer, type) {
-		/**
-		 * @type {string}
-		 */
-		var fileMime = 'text/plain'
-		/**
-		 * @type {string | null}
-		 */
-		var fileExtension = 'txt';
+        var fileMime = 'text/plain';
+        var fileExtension = 'txt';
 
         var fileInfo = fileType(buffer);
+		
         if(type) {
             fileMime = type;
-            fileExtension = mime.getExtension(fileMime);
+            var fileMimeExtension = mime.getExtension(fileMime);
+            if(fileMimeExtension){
+                fileExtension = fileMimeExtension;
+            }
         } else if(fileInfo) {
             fileExtension = fileInfo.ext;
             fileMime = fileInfo.mime;

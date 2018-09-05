@@ -10,10 +10,14 @@ export type SEVERITYTYPE_V = "blocker" | "critical" | "normal" | "minor" | "triv
 
 export type PARAMETERTYPE = "argument" | "environment-variable"
 
-export type BUFFERTYPE = Uint8Array | Buffer
+export type BUFFERTYPE = Uint8Array | Buffer | string
 
 export type DESCRIPTIONS = {
 	[K in DESCRIPTIONTYPE_K]: DESCRIPTIONTYPE_V
+};
+
+export type SEVERITIES = {
+	[K in SEVERITYTYPE_K]: SEVERITYTYPE_V
 };
 
 export type KeysAndValues<U extends string, V extends string> = {
@@ -27,8 +31,6 @@ export type KeysAndAnyValues<U extends string, V extends any> = {
 export type KeysAndValuesFrozen<U extends string, V extends string> = {
 	readonly [K in U]: DeepReadonly<V>
 };
-
-export type SEVERITIES = KeysAndValuesFrozen<SEVERITYTYPE_K, SEVERITYTYPE_V>
 
 export interface Parameter {
 	kind: PARAMETERTYPE, 
