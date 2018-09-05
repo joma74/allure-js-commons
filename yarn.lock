@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@types/file-type@^5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@types/file-type/-/file-type-5.2.1.tgz#e7af49e08187b6b7598509c5e416669d25fa3461"
+  dependencies:
+    "@types/node" "*"
+
 "@types/fs-extra@^5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-5.0.4.tgz#b971134d162cc0497d221adde3dbb67502225599"
@@ -11,6 +17,10 @@
 "@types/jasmine@^2.8.8":
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.8.tgz#bf53a7d193ea8b03867a38bfdb4fbb0e0bf066c9"
+
+"@types/mime@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
 
 "@types/node@*":
   version "10.9.4"
