@@ -1,12 +1,14 @@
 {
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
 		"checkJs": true,
+		"noEmit": true,
 		"module": "commonjs",
         "moduleResolution": "node",
 		"strict": true,
-		"noImplicitAny": false,
-		"noImplicitThis": false,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
         "target": "es5",
         "baseUrl": ".",
         "lib": [
