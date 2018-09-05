@@ -5,9 +5,10 @@
   "main": "index.js",
   "repository": "git@github.com:allure-framework/allure-js-commons.git",
   "scripts": {
-    "tsc_validate": "node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true --traceResolution true --watch",
+	"tsc_validate_watch": "node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true --traceResolution true --watch",
+	"tsc_validate": "node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true",
     "tsc_log_validate": "/bin/bash -c 'node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true --traceResolution true | tee target/tsc.trace1.log; echo $?'",
-    "pretest": "eslint --fix --ignore-path=.gitignore .",
+    "pretest": "eslint --fix --ignore-path=.gitignore . && yarn tsc_validate",
     "test": "JASMINE_CONFIG_PATH=jasmine.json jasmine"
   },
   "license": "Apache-2.0",
