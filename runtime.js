@@ -5,6 +5,7 @@
  * @typedef {import("./types").IRuntime} IRuntime
  * @typedef {import("./types").SEVERITYTYPE_V} SEVERITYTYPE_V
  * @typedef {import("./types").SEVERITIES} SEVERITIES
+ * @typedef {import("./types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
  */
 
 /**
@@ -48,7 +49,7 @@ Runtime.prototype.createStep = function(name, stepFunc) {
             result;
         that._allure.startStep(stepName);
         try {
-            result = stepFunc.apply(this, arguments);
+            result = stepFunc.apply(that, arguments);
         }
         catch(error) {
             status = /** @type {import("./types").TESTSTATUS} */('broken');
@@ -82,7 +83,7 @@ Runtime.prototype.createAttachment = function(name, content, type) {
     if(typeof content === 'function') {
         return function() {
             var attachmentName = that._format(name, Array.prototype.slice.call(arguments, 0)),
-                buffer = content.apply(this, arguments);
+                buffer = content.apply(that, arguments);
             return that.createAttachment(attachmentName, buffer, type);
         };
     } else {
@@ -117,6 +118,11 @@ Runtime.prototype.addEnvironment = function(name, value) {
     this._allure.getCurrentTest().addParameter('environment-variable', name, value);
 };
 
+/**
+ * 
+ * @param {*} description 
+ * @param {DESCRIPTIONTYPE_V=} type 
+ */
 Runtime.prototype.description = function(description, type) {
     this._allure.setDescription(description, type);
 };

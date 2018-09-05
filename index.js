@@ -3,6 +3,7 @@
 /**
  * @typedef {import("./types").BUFFERTYPE} BUFFERTYPE
  * @typedef {import("./types").TESTSTATUS} TESTSTATUS
+ * @typedef {import("./types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
  */
 
 var assign = require('object-assign'),
@@ -49,6 +50,9 @@ Allure.prototype.startSuite = function(suiteName, timestamp) {
     this.suites.unshift(new Suite(suiteName, timestamp));
 };
 
+/**
+ * @param {number=} timestamp
+ */
 Allure.prototype.endSuite = function(timestamp) {
     var suite = this.getCurrentSuite();
     suite.end(timestamp);
@@ -116,6 +120,11 @@ Allure.prototype.endStep = function(status, timestamp) {
     suite.currentStep = currentStep.parent;
 };
 
+/**
+ * 
+ * @param {string} description 
+ * @param {DESCRIPTIONTYPE_V=} type 
+ */
 Allure.prototype.setDescription = function(description, type) {
     this.getCurrentTest().setDescription(description, type);
 };

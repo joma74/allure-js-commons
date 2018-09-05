@@ -8,6 +8,7 @@ var STATUSES = ['passed', 'pending', 'skipped', 'failed', 'broken'];
  * @typedef {import ("./step")} Step
  * @typedef {import ("./attachment")} Attachement
  * @typedef {import ("../types").Label} Label
+ * @typedef {import ("../types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
  * @typedef {import ("../types").Parameter} Parameter
  * @typedef {import ("../types").PARAMETERTYPE} PARAMETERTYPE
  */
@@ -33,7 +34,7 @@ function Test(name, timestamp) {
 /**
  * 
  * @param {string} description 
- * @param {keyof typeof Description.TYPES} type 
+ * @param {DESCRIPTIONTYPE_V} type 
  */
 Test.prototype.setDescription = function (description, type) {
     this.description = new Description(description, type);
@@ -64,6 +65,10 @@ Test.prototype.addStep = function (step) {
     this.steps.push(step);
 };
 
+/**
+ * 
+ * @param {Attachement} attachment 
+ */
 Test.prototype.addAttachment = function (attachment) {
     this.attachments.push(attachment);
 };
@@ -76,8 +81,7 @@ Test.prototype.addAttachment = function (attachment) {
  */
 Test.prototype.end = function (status, error, timestamp) {
     this.stop = timestamp || Date.now();
-    // @ts-ignore this.status may be undefined which results in a TypeError
-    if(status && (STATUSES.indexOf(status) > STATUSES.indexOf(this.status))) {
+    if(status && this.status && (STATUSES.indexOf(status) > STATUSES.indexOf(this.status))) {
         this.status = status;
     }
     if (error) {

@@ -22,7 +22,7 @@ function Suite(name, timestamp) {
 
 /**
  * @this {Suite}
- * @param {number} timestamp 
+ * @param {number=} timestamp 
  */
 Suite.prototype.end = function(timestamp) {
     this.stop = timestamp || Date.now();
@@ -57,6 +57,7 @@ Suite.prototype.toXML = function() {
 
 
     if(this.stop) {
+        // @ts-ignore
         result['@'].stop = this.stop;
     }
 
