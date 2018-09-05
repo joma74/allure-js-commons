@@ -8,13 +8,21 @@ var fileType = require('file-type'),
 module.exports = {
     /**
 	 * 
-	 * @param {BUFFERTYPE | string} [buffer]
+	 * @param {BUFFERTYPE} buffer
 	 * @param {string} [type] fileMime string e.g. text/plain
+	 * @return {Object.<string, string | null>}
 	 */
     getBufferInfo: function(buffer, type) {
-        var fileInfo = fileType(buffer),
-            fileExtension = 'txt',
-            fileMime = 'text/plain';
+		/**
+		 * @type {string}
+		 */
+		var fileMime = 'text/plain'
+		/**
+		 * @type {string | null}
+		 */
+		var fileExtension = 'txt';
+
+        var fileInfo = fileType(buffer);
         if(type) {
             fileMime = type;
             fileExtension = mime.getExtension(fileMime);

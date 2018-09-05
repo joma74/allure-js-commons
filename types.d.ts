@@ -1,6 +1,8 @@
 export type TESTSTATUS = "passed" | "pending" | "skipped" | "failed" | "broken"
 
-export type DESCRIPTIONTYPE = "text" | "html" | "markdown"
+export type DESCRIPTIONTYPE_K = "TEXT" | "HTML" | "MARKDOWN"
+
+export type DESCRIPTIONTYPE_V = "text" | "html" | "markdown"
 
 export type SEVERITYTYPE_K = "BLOCKER" | "CRITICAL" | "NORMAL" | "MINOR" | "TRIVIAL"
 
@@ -8,9 +10,17 @@ export type SEVERITYTYPE_V = "blocker" | "critical" | "normal" | "minor" | "triv
 
 export type PARAMETERTYPE = "argument" | "environment-variable"
 
-export type BUFFERTYPE = Uint8Array | undefined
+export type BUFFERTYPE = Uint8Array | Buffer
+
+export type DESCRIPTIONS = {
+	[K in DESCRIPTIONTYPE_K]: DESCRIPTIONTYPE_V
+};
 
 export type KeysAndValues<U extends string, V extends string> = {
+	[K in U]: V
+};
+
+export type KeysAndAnyValues<U extends string, V extends any> = {
 	[K in U]: V
 };
 
@@ -19,14 +29,6 @@ export type KeysAndValuesFrozen<U extends string, V extends string> = {
 };
 
 export type SEVERITIES = KeysAndValuesFrozen<SEVERITYTYPE_K, SEVERITYTYPE_V>
-
-export enum SEVERITYENUM {
-    BLOCKER = "blocker",
-    CRITICAL = "critical",
-    NORMAL = "normal",
-	MINOR = "minor",
-	TRIVIAL = "trivial",
-}
 
 export interface Parameter {
 	kind: PARAMETERTYPE, 

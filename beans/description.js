@@ -1,18 +1,29 @@
 'use srtict';
 
-var TYPES = {
+/**
+ * @typedef {import ("../types").DESCRIPTIONS} DESCRIPTIONS
+ * @typedef {import ("../types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
+ */
+
+var hasAKey = require('./utils').hasKey;
+
+/**
+ * @type { DESCRIPTIONS };
+ */
+var TYPE_OF_DESCRIPTION = {
     TEXT: 'text',
     HTML: 'html',
     MARKDOWN: 'markdown'
 };
 
-/**
- * @todo keyof typeof Description.TYPES is not equal to their values
+var TYPES = Object.freeze(TYPE_OF_DESCRIPTION)
+
+/** 
  * 
  * @constructor
  * @this {Description}
  * @param {string} value 
- * @param {keyof typeof Description.TYPES} type 
+ * @param {DESCRIPTIONTYPE_V=} type 
  */
 function Description(value, type) {
     this.value = value;
@@ -20,14 +31,22 @@ function Description(value, type) {
 }
 
 /**
- * @todo keyof typeof Description.TYPES is not equal to their values
  * 
- * @param {keyof typeof Description.TYPES} type one of Description.TYPES
+ * @param {DESCRIPTIONTYPE_V=} type one of Description.TYPES.values
+ * @return {boolean} parm type is oneof  Description.TYPES.values
  */
 function isAvailableType(type) {
-    return Object.keys(TYPES).some(function(key) {
-        return TYPES[key] === type;
-    });
+	if(type != undefined) {
+		return Object.keys(TYPES).some(
+			function(key) {
+				if(hasAKey(TYPES, key)){
+					return TYPES[key] === type;
+				}
+				return false
+			}
+		);
+	}
+	return false
 }
 
 Description.prototype.toXML = function() {
