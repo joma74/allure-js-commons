@@ -3,6 +3,7 @@
 /**
  * @typedef {import ("../types").DESCRIPTIONS} DESCRIPTIONS
  * @typedef {import ("../types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
+ * @typedef {import ("../types").DescriptionResultXML} DescriptionResultXML
  */
 
 var hasAKey = require('./utils').hasKey;
@@ -50,6 +51,9 @@ function isAvailableType(type) {
     return false;
 }
 
+/**
+ * @returns {DescriptionResultXML}
+ */
 Description.prototype.toXML = function() {
     return {
         '@': {

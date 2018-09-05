@@ -2,6 +2,10 @@
  * Created by dolf on 12.05.15.
  */
 /**
+ * @typedef {import ("../types").AttachmentResultXML} AttachmentResultXML
+ */
+
+/**
  * @constructor
  * @this {Attachment}
  * @param {string} title 
@@ -16,6 +20,9 @@ function Attachment(title, source, size, mime) {
     this.source = source;
 }
 
+/**
+ * @return {AttachmentResultXML}
+ */
 Attachment.prototype.toXML = function () {
     return {
         '@': {

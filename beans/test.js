@@ -11,6 +11,8 @@ var STATUSES = ['passed', 'pending', 'skipped', 'failed', 'broken'];
  * @typedef {import ("../types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
  * @typedef {import ("../types").Parameter} Parameter
  * @typedef {import ("../types").PARAMETERTYPE} PARAMETERTYPE
+ * @typedef {import ("../types").TestResultXML} TestResultXML
+
  */
 
 /**
@@ -95,6 +97,9 @@ Test.prototype.end = function (status, error, timestamp) {
 };
 
 Test.prototype.toXML = function () {
+    /**
+	 * @type {TestResultXML}
+	 */
     var result = {
         '@': {
             start: this.start,

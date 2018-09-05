@@ -2,6 +2,7 @@
 
 /**
  * @typedef {import("../types").TESTSTATUS} TESTSTATUS
+ * @typedef {import("../types").StepResultXML} StepResultXML
  * @typedef {import("./attachment")} Attachement
  */
 
@@ -49,7 +50,9 @@ Step.prototype.end = function (status, timestamp) {
 };
 
 Step.prototype.toXML = function () {
-
+    /**
+	 * @type {StepResultXML}
+	 */
     var result = {
         '@': {
             start: this.start,

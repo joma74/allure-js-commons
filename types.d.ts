@@ -42,3 +42,79 @@ export interface Label {
 	name: string, 
 	value: any
 }
+
+export interface SuiteResultXML {
+    '@': {
+        'xmlns:ns2': string
+		start: number
+		stop?: number
+    };
+    name: string
+    title: string
+    'test-cases': {
+        'test-case': TestResultXML[]
+    };
+}
+
+export interface TestResultXML {
+	description?: DescriptionResultXML
+	failure?: {
+		message: string,
+		"stack-trace"?: string
+	},
+	"@" : {
+		start: number,
+		status: TESTSTATUS | undefined
+		stop?: number
+	},
+	name: string,
+	title: string,
+	labels: {
+		label: {
+			"@" : Label
+		}[]
+	},
+	parameters: {
+		parameter: {
+			"@" : Parameter
+		}[]
+	},
+	steps: {
+		step: StepResultXML[]
+	},
+	attachments: {
+		attachment: AttachmentResultXML[]
+	},
+}
+
+export interface DescriptionResultXML {
+    '@': {
+        type?: DESCRIPTIONTYPE_V;
+    };
+    '#': string;
+}
+
+export interface StepResultXML {
+	"@" : {
+		start: number,
+		status: TESTSTATUS | undefined
+		stop?: number
+	},
+	name: string,
+	title: string,
+	attachments: {
+		attachment: AttachmentResultXML[]
+	},
+	steps: {
+		step: StepResultXML[]
+	}
+}
+
+export interface AttachmentResultXML {
+	"@" : {
+		title: string,
+		source: string,
+		type: string,
+		size: number
+	}
+}

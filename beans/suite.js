@@ -1,6 +1,7 @@
 /**
  * @typedef {import ("./test")} Test
  * @typedef {import ("./step")} Step
+ * @typedef {import ("../types").SuiteResultXML} SuiteResultXML
  */
 
 /**
@@ -41,6 +42,9 @@ Suite.prototype.addTest = function(test) {
 };
 
 Suite.prototype.toXML = function() {
+    /**
+	 * @type {SuiteResultXML}
+	 */
     var result = {
         '@': {
             'xmlns:ns2' : 'urn:model.allure.qatools.yandex.ru',
@@ -57,7 +61,6 @@ Suite.prototype.toXML = function() {
 
 
     if(this.stop) {
-        // @ts-ignore
         result['@'].stop = this.stop;
     }
 
