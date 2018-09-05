@@ -47,7 +47,7 @@ export interface SuiteResultXML {
     '@': {
         'xmlns:ns2': string
 		start: number
-		stop?: number
+		stop: number
     };
     name: string
     title: string
