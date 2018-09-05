@@ -10,7 +10,7 @@
 			"problemMatcher": ["$tsc-watch"],
 			"presentation": {
 				"echo": true,
-				"reveal": "silent",
+				"reveal": "never",
 				"focus": false,
 				"panel": "dedicated"
 			},

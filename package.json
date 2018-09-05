@@ -5,8 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:allure-framework/allure-js-commons.git",
   "scripts": {
-    "tsc_validate": "node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true --traceResolution true",
-    "tsc_bash_validate": "/bin/bash -c 'node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true --traceResolution true | tee target/tsc.trace1.log; echo $?'",
+    "tsc_validate": "node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true --traceResolution true --watch",
+    "tsc_log_validate": "/bin/bash -c 'node_modules/typescript/bin/tsc --project ./tsconfig.json --noEmit true --traceResolution true | tee target/tsc.trace1.log; echo $?'",
     "pretest": "eslint --ignore-path=.gitignore .",
     "test": "JASMINE_CONFIG_PATH=jasmine.json jasmine"
   },
