@@ -1,4 +1,9 @@
 'use strict';
+
+/**
+ *  @typedef {import ("../types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
+ */
+
 var proxyquire = require('proxyquire');
 
 /**
@@ -52,6 +57,9 @@ describe('allure-runtime', function() {
 
     it('should add description with markdown', function() {
         var description = 'test desc';
+        /**
+		 * @type {DESCRIPTIONTYPE_V}
+		 */
         var type = 'markdown';
 
         runtime.description(description, type);
@@ -124,9 +132,15 @@ describe('allure-runtime', function() {
     });
 
     it('should add attachments inside step', function() {
-        var stepFn = runtime.createStep('save file [{0}]', function(name, content) {
-            runtime.createAttachment(name, content);
-        });
+        var stepFn = runtime.createStep('save file [{0}]', 
+            /**
+			 * @param {string} name
+			 * @param {any} content
+			 */
+            function(name, content) {
+                runtime.createAttachment(name, content);
+            }
+        );
         stepFn('test', 'test content');
         expect(allure.getCurrentSuite().currentTest.attachments).toEqual([]);
         expect(allure.getCurrentSuite().currentTest.steps).toEqual([joc({
@@ -145,10 +159,15 @@ describe('allure-runtime', function() {
 
     it('should await promises and can create asynchronous step tree', function(done) {
         var rootStep = runtime.createStep('root', function() {
-                return firstNested().then(function(result) {
-                    expect(result).toBe('ok result');
-                    return secondNested();
-                });
+                return firstNested().then(
+                    /**
+					 * @param {string} result 
+					 */
+                    function(result) {
+                        expect(result).toBe('ok result');
+                        return secondNested();
+                    }
+                );
             }),
             firstNested = runtime.createStep('passed', function() {
                 return Promise.resolve('ok result');
@@ -156,28 +175,34 @@ describe('allure-runtime', function() {
             secondNested = runtime.createStep('broken', function() {
                 return Promise.reject('bad result');
             });
-        rootStep().then(done.fail, function(result) {
-            expect(result).toBe('bad result');
-            expect(allure.getCurrentSuite().currentTest.steps).toEqual([
-                joc({
-                    name: 'root',
-                    steps: [
-                        joc({
-                            name: 'passed',
-                            status: 'passed',
-                            start: jasmine.any(Number),
-                            stop: jasmine.any(Number)
-                        }),
-                        joc({
-                            name: 'broken',
-                            status: 'broken',
-                            start: jasmine.any(Number),
-                            stop: jasmine.any(Number)
-                        })
-                    ]
-                })
-            ]);
-            done();
-        });
+        rootStep().then(done.fail, 
+            /**
+			 * 
+			 * @param {string} result 
+			 */
+            function(result) {
+                expect(result).toBe('bad result');
+                expect(allure.getCurrentSuite().currentTest.steps).toEqual([
+                    joc({
+                        name: 'root',
+                        steps: [
+                            joc({
+                                name: 'passed',
+                                status: 'passed',
+                                start: jasmine.any(Number),
+                                stop: jasmine.any(Number)
+                            }),
+                            joc({
+                                name: 'broken',
+                                status: 'broken',
+                                start: jasmine.any(Number),
+                                stop: jasmine.any(Number)
+                            })
+                        ]
+                    })
+                ]);
+                done();
+            }
+        );
     });
 });

@@ -1,4 +1,9 @@
+/**
+ *  @typedef {import ("../types").DESCRIPTIONTYPE_V} DESCRIPTIONTYPE_V
+ */
+
 var proxyquire = require('proxyquire');
+
 /**
  * @type {typeof import ("../index")}
  */
@@ -105,6 +110,9 @@ describe('allure-reporter', function () {
         it('should add description with markdown', function () {
             var testCase = allure.getCurrentSuite().testcases[0];
             var description = 'test desc';
+            /**
+			 * @type {DESCRIPTIONTYPE_V}
+			 */
             var type = 'markdown';
 
             allure.setDescription(description, type);

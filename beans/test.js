@@ -34,7 +34,7 @@ function Test(name, timestamp) {
 /**
  * 
  * @param {string} description 
- * @param {DESCRIPTIONTYPE_V} type 
+ * @param {DESCRIPTIONTYPE_V=} type 
  */
 Test.prototype.setDescription = function (description, type) {
     this.description = new Description(description, type);
@@ -82,6 +82,8 @@ Test.prototype.addAttachment = function (attachment) {
 Test.prototype.end = function (status, error, timestamp) {
     this.stop = timestamp || Date.now();
     if(status && this.status && (STATUSES.indexOf(status) > STATUSES.indexOf(this.status))) {
+        this.status = status;
+    } else if (status && !this.status && STATUSES.indexOf(status) >= 0) {
         this.status = status;
     }
     if (error) {

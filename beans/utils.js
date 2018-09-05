@@ -1,6 +1,6 @@
 module.exports = {
 
-	/**
+    /**
 	 * Indexing objects in TypeScript
 	 * 
 	 * @template O
@@ -8,7 +8,7 @@ module.exports = {
 	 * @param {string} key
 	 * @return {key is keyof O}
 	 */
-	hasKey: function(obj, key) {
-		return key in obj
-	}
-}
+    hasKey: function(obj, key) {
+        return key in obj;
+    }
+};
