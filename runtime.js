@@ -11,13 +11,15 @@
 /**
  * @type {SEVERITIES}
  */
-var SEVERITY = Object.freeze({
+var TYPE_OF_SEVERITY = {
     BLOCKER: 'blocker',
     CRITICAL: 'critical',
     NORMAL: 'normal',
     MINOR: 'minor',
     TRIVIAL: 'trivial'
-});
+};
+
+var SEVERITY = Object.freeze(TYPE_OF_SEVERITY);
 
 /**
  * @constructor

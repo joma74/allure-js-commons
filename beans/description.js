@@ -16,14 +16,15 @@ var TYPE_OF_DESCRIPTION = {
     MARKDOWN: 'markdown'
 };
 
-var TYPES = Object.freeze(TYPE_OF_DESCRIPTION)
+var TYPES = Object.freeze(TYPE_OF_DESCRIPTION);
 
 /** 
+ * param type is guarded for a value of undefined
  * 
  * @constructor
  * @this {Description}
  * @param {string} value 
- * @param {DESCRIPTIONTYPE_V=} type 
+ * @param {DESCRIPTIONTYPE_V | undefined =} type 
  */
 function Description(value, type) {
     this.value = value;
@@ -36,17 +37,17 @@ function Description(value, type) {
  * @return {boolean} parm type is oneof  Description.TYPES.values
  */
 function isAvailableType(type) {
-	if(type != undefined) {
-		return Object.keys(TYPES).some(
-			function(key) {
-				if(hasAKey(TYPES, key)){
-					return TYPES[key] === type;
-				}
-				return false
-			}
-		);
-	}
-	return false
+    if(type != undefined) {
+        return Object.keys(TYPES).some(
+            function(key) {
+                if(hasAKey(TYPES, key)){
+                    return TYPES[key] === type;
+                }
+                return false;
+            }
+        );
+    }
+    return false;
 }
 
 Description.prototype.toXML = function() {
