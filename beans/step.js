@@ -7,8 +7,7 @@
  */
 
 /**
- * @constructor
- * @this {Step}
+ * @class
  * @param {string} name 
  * @param {number=} timestamp
  */

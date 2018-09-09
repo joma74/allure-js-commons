@@ -15,7 +15,7 @@ var assign = require('object-assign'),
     writer = require('./writer');
 
 /**
- * @constructor
+ * @class
  */
 function Allure() {
     /** @type {Suite[]} */
@@ -157,4 +157,4 @@ Allure.prototype.pendingCase = function(testName, timestamp) {
     this.endCase('pending', {name: 'PendingCase', message: 'Test ignored'}, timestamp);
 };
 
-module.exports = Allure;
+module.exports=Allure;

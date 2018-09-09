@@ -5,8 +5,7 @@
  */
 
 /**
- * @constructor
- * @this {Suite}
+ * @class
  * @param {string} name 
  * @param {number=} timestamp
  */

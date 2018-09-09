@@ -22,8 +22,7 @@ var TYPES = Object.freeze(TYPE_OF_DESCRIPTION);
 /** 
  * param type is guarded for a value of undefined
  * 
- * @constructor
- * @this {Description}
+ * @class
  * @param {string} value 
  * @param {DESCRIPTIONTYPE_V | undefined =} type 
  */

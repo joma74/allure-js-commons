@@ -16,7 +16,7 @@ var STATUSES = ['passed', 'pending', 'skipped', 'failed', 'broken'];
  */
 
 /**
- * @constructor
+ * @class
  * @param {string} name 
  * @param {number=} timestamp
  */

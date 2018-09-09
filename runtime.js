@@ -21,7 +21,7 @@ var TYPE_OF_SEVERITY = {
 var SEVERITY = Object.freeze(TYPE_OF_SEVERITY);
 
 /**
- * @constructor
+ * @class
  * @param {import("./index")} allure
  */
 function Runtime(allure) {

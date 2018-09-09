@@ -6,7 +6,7 @@
  */
 
 /**
- * @constructor
+ * @class
  * @this {Attachment}
  * @param {string} title 
  * @param {string} source 
